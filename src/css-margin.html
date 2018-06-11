@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>margin</title>
+	<link rel="stylesheet" href="../css/reset.css">
+	<style type="text/css">
+		.warpper{
+			margin: 50px;
+		}
+		h3{
+			margin: 0;
+			line-height: 40px;
+		}
+		.section-first p{
+			line-height: 50px;
+			margin: 25px 0;
+			background-color: #ccc;
+		}
+		
+		.content{
+			width: 200px;
+			display: inline-block;
+		}
+		.father{
+			display: block;
+			width: 100%;
+			margin-right: 5px;
+			background-color: #f0f3f9;
+
+		}
+		
+		.content-auto{
+			width: 600px;
+			border: 1px solid #333;
+			height: 50px;
+		}
+		.item-auto{
+			width: 200px;
+			background-color: #f0f3f9;
+			margin-right: 100px;
+			margin-left: auto;
+			height: 50px;
+		}
+		.content-father{
+			height: 200px;
+			width: 600px;
+			background-color: blue;
+			writing-mode: vertical-lr;  /*更改流给垂直方向*/
+			/*writing-mode: vertical-rl;*/
+		}
+		.item-son{
+			width: 200px;
+			height: 50px;
+			background-color: green;
+			margin: auto;
+		}
+
+		.content-relative{
+			width: 600px;
+			height: 200px;
+			background-color: yellow;
+			position: relative;
+		}
+		.item-absolute{
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background: red;
+			width: 200px;
+			height: 50px;
+			margin: auto;
+		}
+
+		.box{
+			width: 600px;
+			background: orange;
+		}
+		.box ul{
+			overflow: hidden;
+			margin-right: -20px;
+		}
+		.box li{
+			float: left;
+			width: 186.66px;
+			background-color: blue;
+			margin-right: 20px;
+			height: 50px;
+			margin-bottom: 10px;
+		}
+		
+	</style>
+</head>
+<body>
+	<div class="warpper">
+		<section class="section-first">
+			<h3>相邻兄弟元素margin 重叠</h3>
+			<p>第一行</p>
+			<p>第二行</p>
+		</section>
+
+		<section>
+			<h3>父级元素和 第一个或者最后一个子级元素，共用一个margin-top</h3>
+			<div class="content">
+				<div class="father">
+					<div class="son" style="margin-top: 50px;">子级元素</div>
+				</div>
+			</div>	
+			<div class="content">
+				<div class="father" style="margin-top: 50px;">
+					<div class="son">子级元素</div>
+				</div>
+			</div>	
+			<div class="content">	
+				<div class="father" style="margin-top: 50px;">
+					<div class="son" style="margin-top: 50px;">子级元素</div>
+				</div>
+				
+			</div>
+		</section>
+		<section>
+			<h3>margin auto</h3>
+			<div class="content-auto">
+				<div class="item-auto">距离右边100px，距离左边剩余</div>
+			</div>
+			<h3>margin auto垂直居中 writing-mode</h3>
+			<div class="content-father">
+				<div class="item-son">son垂直居中</div>
+			</div>
+			<h3>positon 和 margin居中</h3>
+			<div class="content-relative">
+				<div class="item-absolute">此特性 IE8+</div>
+			</div>
+		</section>
+
+		<section>
+			<h3>maigin 负值的运用</h3>
+			<div class="box">
+				<ul>
+					<li>列表1</li>
+					<li>列表2</li>
+					<li>列表3</li>
+					<li>列表1</li>
+					<li>列表2</li>
+					<li>列表3</li>
+				</ul>
+			</div>
+		</section>
+
+		<section>
+			<h3>margin-start || margin-end || margin-before || margin-after</h3>
+			<div>
+				正常情况下 marign-start 等同于 margin-left，两者重叠不累加<br><br>
+				如果水平流是从右往左，margin-start 等同与 margin-right <br><br>
+				在垂直流 （writing-mode: vertical-lr;	） 的作用下， margin-start 等同于 maring-top
+			</div>
+			<h3>margin-collapse</h3>
+			<div>
+				-webkit-margin-collapse: collapse;  //默认重叠
+				-webkit-margin-collapse: discard;   //取消重叠
+				-webkit-margin-collapse: collapse;   //分隔
+			</div>
+		</section>
+	</div>
+</body>
+</html>

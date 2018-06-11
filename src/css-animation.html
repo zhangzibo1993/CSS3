@@ -7,38 +7,42 @@
 
 
     <style type="text/css">
-    /*
-        CSS3的Animation有八个属性
-
-        animation-name ：动画名
-        animation-duration：时间
-        animation-delay：延时
-        animation-iteration-count：次数
-        animation-direction：方向
-        animation-play-state：控制
-        animation-fill-mode：状态
-        animation-timing-function：关键帧变化
-     */
+    h2{
+        font-size: 1rem;
+    }
 
     .bird {
-        min-width: 91px;
-        min-height: 71px;
-        top: 10%;
-        position: absolute;
+        width: 91px;
+        height: 71px;
+        /*top: 10%;
+        position: absolute;*/
         z-index: 10;
-        background: url(http://img.mukewang.com/55ade1700001b38302730071.png)
+        background: url(http://img.mukewang.com/55ade1700001b38302730071.png);
     }
     
     .birdFly {
         /*写法1*/
         animation: bird-slow 400ms steps(3) infinite;
+        /*
+            通过定义一个类，类中定义的动画的一些关键数据，比如动画名，时间，次数，切换的位置
+
+            通过keyframes定义动画具体执行参数与时间段
+
+            steps(3)的意思就是：keyframes设置的0%-100%的段中，background-position的的x坐标会变化3次
+
+            steps会平分这些段落值，其变化值就是
+
+            background-position-x: -0px
+            background-position-x: -91px
+            background-position-x: -182px
+        */
         
         /*写法2*/
         /*-webkit-animation-name: bird-slow;
         -webkit-animation-duration: 400ms;
         -webkit-animation-timing-function: steps(3);
         -webkit-animation-iteration-count: infinite;
-*/
+        */
          
             
     }
@@ -47,15 +51,49 @@
         0% {background-position-x: -0px}
         100% {background-position-x: -273px}
     }
-    
+
+    .big-bird {
+         width: 3rem;
+         height: 3rem;
+         /*top: 10%;
+         position: absolute;*/
+         z-index: 10;
+         background: url(http://img.mukewang.com/55ade1700001b38302730071.png);
+         background-size: 300% 100%;
+     }
+
+     .big-birdFly {
+        /*写法1*/
+       /* -moz-animation-name: bird-slow;
+        -moz-animation-duration: 400ms;
+        -moz-animation-timing-function: steps(1,start);
+        -moz-animation-iteration-count: infinite;*/
+
+        /*写法2*/
+        -webkit-animation:big-bird-slow 400ms steps(3) infinite;
+    }
+
+    @-webkit-keyframes big-bird-slow {
+        0% {
+            background-position: -0% 0%;
+        }
+        100% {
+            background-position: -300% 0%;
+        }
+    }
+
+
 
     </style>
 </head>
 
 <body>
 
-    steps(3)实现帧动画
+    <h2>实现帧动画</h2>
     <div class="bird birdFly"></div>
+
+    <h2>尺寸增加后，精灵图正常</h2>
+    <div class="big-bird big-birdFly"></div>
 </body>
 <script type="text/javascript">
 var docEl = document.documentElement,
